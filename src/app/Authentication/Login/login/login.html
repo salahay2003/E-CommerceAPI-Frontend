@@ -1,0 +1,32 @@
+<div class="bg-white flex justify-center items-center">
+    <div class="w-full max-w-lg p-12">
+        <p class="text-center text-slate-400 mb-10">
+            Welcome back! <br>
+            Please Login/Sign-Up to your account
+        </p>
+
+        <form (ngSubmit)="Login()">
+            <fieldset class="fieldset">
+                <label class="label">Email</label>
+                <input type="email" class="input w-full" name="email" placeholder="Email" [(ngModel)]="userEmail" />
+
+                <label class="label">Password</label>
+                <input type="password" class="input w-full" name="password" placeholder="Password" [(ngModel)]="userPassword" />
+
+                <div>
+                    <a class="link link-hover">Forgot password?</a>
+                </div>
+
+                <p id="Invalid" class="text-red-600"></p>
+            </fieldset>
+
+            <div class="py-10 flex gap-4">
+                <button type="submit" class="btn bg-green-600 text-white flex-1" >Login</button>
+                <button type="button" onclick="window.location.href='/Register/Register.html'"
+                    class="btn btn-outline  flex-1">
+                    Signup
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

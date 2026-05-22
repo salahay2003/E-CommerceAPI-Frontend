@@ -1,0 +1,54 @@
+<div class="md:p-10 p-4 space-y-4">
+
+  <h2 class="text-lg font-medium">
+    Orders List
+  </h2>
+
+  <div
+    *ngFor="let order of orders(); let i = index"
+    class="flex flex-col md:grid md:grid-cols-[2fr_1fr_1fr] md:items-center gap-5 p-5 max-w-4xl rounded-md border border-gray-300 text-gray-800"
+  >
+
+    <!-- Products -->
+    <div class="flex gap-5">
+
+      <img
+        class="w-12 h-12 object-cover opacity-60"
+        [src]="boxIcon"
+        alt="boxIcon"
+      />
+
+      <div>
+        <p class="font-medium mb-2">Order #{{ order.id }}</p>
+
+        <div
+          *ngFor="let item of order.orderItems"
+          class="flex flex-col justify-center"
+        >
+          <p class="font-medium">
+            {{ item.productName }}
+            <span class="text-indigo-500">x {{ item.quantity }}</span>
+          </p>
+          <p class="text-sm text-gray-500">
+            ${{ item.price }} each
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Total Amount -->
+    <div class="text-sm">
+      <p class="font-medium">Total Amount</p>
+      <p class="text-black/70">${{ order.totalAmount }}</p>
+    </div>
+
+    <!-- Order Date -->
+    <div class="flex flex-col text-sm">
+      <p class="font-medium">Order Date</p>
+      <p>{{ order.orderDate }}</p>
+    </div>
+
+  </div>
+
+</div>

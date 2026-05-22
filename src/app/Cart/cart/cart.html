@@ -1,0 +1,71 @@
+<!-- cart.component.html -->
+
+<div class="flex flex-col md:flex-row py-16 max-w-6xl w-full px-6 mx-auto">
+
+  <div class="flex-1 max-w-4xl">
+
+    <h1 class="text-3xl font-medium mb-6">
+      Shopping Cart
+      <span class="text-sm text-indigo-500">
+        {{ products().length }} Items
+      </span>
+    </h1>
+
+    <div class="grid grid-cols-[2fr_1fr_1fr] text-gray-500 text-base font-medium pb-3">
+      <p class="text-left">Product Details</p>
+      <p class="text-center">Subtotal</p>
+      <p class="text-center">Action</p>
+    </div>
+
+    <div
+      *ngFor="let product of products(); let i = index"
+      class="grid grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-sm md:text-base font-medium pt-3"
+    >
+
+      <div class="flex items-center md:gap-6 gap-3">
+
+        <div class="cursor-pointer w-24 h-24 flex items-center justify-center border border-gray-300 rounded overflow-hidden">
+         
+           <img className="max-w-full h-full object-cover" src={{product.imageUrl}} alt={{product.productId}} />
+        </div>
+
+        <div>
+          <p class="hidden md:block font-semibold">
+            {{ product.productName }}
+          </p>
+
+          <div class="font-normal text-gray-500/70">
+
+            <div class="flex items-center gap-3">
+              <p>Qty:</p>
+              <select
+                class="outline-none"
+                [(ngModel)]="product.quantity"
+              >
+                <option *ngFor="let qty of [1,2,3,4,5]" [value]="qty">
+                  {{ qty }}
+                </option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-center">
+        ${{ product.price * product.quantity }}
+      </p>
+
+      <button
+        class="cursor-pointer mx-auto btn bg-red-600 text-white"
+        (click)="removeProduct(product.productId)"
+      >
+        Remove
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
